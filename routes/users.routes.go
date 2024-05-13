@@ -33,6 +33,8 @@ func GetUserHanlder(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	db.DB.Model(&user).Association("Tasks").Find(&user.Tasks) // como hago la relacion entres user y task?
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(&user)
 }
